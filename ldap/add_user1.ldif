@@ -1,0 +1,11 @@
+dn: uid=user1,dc=master-ldap,dc=com
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+cn: User1
+sn: 1
+uid: user1
+uidNumber: 1001
+gidNumber: 1001
+homeDirectory: /home/user1
+userPassword: {SSHA}LyU4qnVQeS08mfnSOM24CMZE45MDCw1F

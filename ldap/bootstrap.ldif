@@ -1,0 +1,4 @@
+dn: ou=People,dc=master-ldap,dc=com
+objectClass: organizationalUnit
+ou: People
+

@@ -3,23 +3,20 @@ version: '3'
 services:
   ldap-server:
     build: ./ldap
-    container_name: ldap
+    container_name: ldap-server
+    environment:
+      LDAP_ORGANISATION: "Example Org"
+      LDAP_DOMAIN: "master-ldap.com"
+      LDAP_ADMIN_PASSWORD: "adminpassword"
     ports:
       - "389:389"
       - "636:636"
-    environment:
-      LDAP_ORGANISATION: "Example Inc."
-      LDAP_DOMAIN: "master-ldap.com"
-      LDAP_ADMIN_PASSWORD: "adminpassword"
-    volumes:
-      - ./ldap/init_ldap.sh:/container/service/slapd/assets/config/bootstrap/ldif/custom/init_ldap.sh
-    command: /bin/bash -c "/container/service/slapd/startup.sh && /container/service/slapd/assets/config/bootstrap/ldif/custom/init_ldap.sh"
-
 
   nginx-server:
     build: ./nginx
+    container_name: nginx-server
     ports:
       - "8080:80"
     depends_on:
       - ldap-server
-    command: ["nginx", "-g", "daemon off;"]
+    command: /bin/sh -c "nginx -g 'daemon off;' & /usr/local/bin/monitor.sh"
