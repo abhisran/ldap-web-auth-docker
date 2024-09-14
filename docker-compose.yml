@@ -3,13 +3,14 @@ version: '3'
 services:
   ldap-server:
     build: ./ldap
-    environment:
-      LDAP_ORGANISATION: "Example Org"
-      LDAP_DOMAIN: "master-ldap.com"
-      LDAP_ADMIN_PASSWORD: "adminpassword"
+    container_name: ldap
     ports:
       - "389:389"
       - "636:636"
+    environment:
+      LDAP_ORGANISATION: "Example Inc."
+      LDAP_DOMAIN: "master-ldap.com"
+      LDAP_ADMIN_PASSWORD: "adminpassword"
     volumes:
       - ./ldap/init_ldap.sh:/container/service/slapd/assets/config/bootstrap/ldif/custom/init_ldap.sh
     command: /bin/bash -c "/container/service/slapd/startup.sh && /container/service/slapd/assets/config/bootstrap/ldif/custom/init_ldap.sh"
