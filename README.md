@@ -31,7 +31,7 @@ ldap-web-auth-docker/
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/ldap-web-auth-docker.git
+git clone https://github.com/abhisran/ldap-web-auth-docker.git
 cd ldap-web-auth-docker
 ```
 
